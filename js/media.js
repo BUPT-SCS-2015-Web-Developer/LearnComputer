@@ -40,10 +40,10 @@ function loadMedia(mediaID) {
     }, function(data) {
         if(data.result === "succeeded") {
             $('main').load('lib/view.html', function() {
-                $("#media-title").html('<span id="media-id"></span>' + data.media[0].title);
-                $("#media-file").attr("src", "media/" + data.media[0].file);
-                $("#media-id").attr("media-id", data.media[0].MediaID);
-                learnTime = parseInt(data.media[0].time);
+                $("#media-title").html('<span id="media-id"></span>' + data.media.title);
+                $("#media-file").attr("src", "media/" + data.media.filename);
+                $("#media-id").attr("media-id", data.media.MediaID);
+                learnTime = parseInt(data.media.time);
                 if (isNaN(learnTime)) {
                     learnTime = 0;
                 }
@@ -59,7 +59,6 @@ function loadMedia(mediaID) {
                 $("#save").click(function() {
                     saveTime();
                 })
-                learnTime = data.media[0].time;
                 if (learnTime < 5) {
                     $("#next").addClass("disabled");
                 }
@@ -105,9 +104,9 @@ function loadCatalogue(type) {
         if (data.result === "succeeded") {
             var lastLearned = 1;
             for (index in data.media) {
-                $("#catalogue").append('<div class="col m4"><a class="btn-flat" id="media' + data.media[index].MediaID + '">' + data.media[index].title + ' <span class="chip">' + data.media[index].time + '</span></a></div>');
+                $("#catalogue").append('<div class="col m4"><a class="btn-flat" id="media' + data.media[index].MediaID + '" media-id="' + data.media[index].MediaID + '">' + data.media[index].title + ' <span class="chip">' + data.media[index].time + '</span></a></div>');
                 $('#media' + data.media[index].MediaID).click(function() {
-                    loadMedia($(this).attr("id").match("\d+"));
+                    loadMedia($(this).attr("media-id"));
                 });
                 if (lastLearned == 0) {
                     $('#media' + data.media[index].MediaID).addClass("disabled");
@@ -117,9 +116,9 @@ function loadCatalogue(type) {
                     learnTime = 0;
                 }
                 if (learnTime < 5) {
-                    lastLearn = 0;
+                    lastLearned = 0;
                 } else {
-                    lastLearn = 1;
+                    lastLearned = 1;
                 }
             }
         }

@@ -1,0 +1,32 @@
+body{
+    font-family:"华文细黑","微软雅黑","Microsoft YaHei",STXiHei,Sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+#logo {
+	margin-left: 10px;
+}
+#tag {
+	margin-right: 5px;
+}
+.mainCard {
+	margin-top: 80px;
+
+}
+.videopart {
+	margin-top: 20px;
+}
+/*================*/
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}.lesson {
+	margin-top: 20px;
+	margin-right: 40px;
+}

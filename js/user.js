@@ -26,7 +26,7 @@ $(document).ready(function(e) {
                 "displayname": $("#displayname").val()
             },
             success: function (data) {
-                if (data.result == "succeeded") {
+                if (data.result == "available") {
                     $("#signup-succeed").openModal();
                 } else {
                     $("#signup-fail").openModal();

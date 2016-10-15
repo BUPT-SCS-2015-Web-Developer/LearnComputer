@@ -107,12 +107,16 @@ function loadCatalogue(type) {
             for (index in data.result) {
                 $("#catalogue").append('<div class="col m4"><a class="btn-flat" id="media' + data.media[index].MediaID + '">' + data.media[index].title + ' <span class="chip">' + data.media[index].time + '</span></a></div>');
                 $('#media' + data.media[index].MediaID).click(function() {
-                    loadMedia($(this).attr("id").match("d+"));
+                    loadMedia($(this).attr("id").match("\d+"));
                 });
                 if (lastLearned == 0) {
                     $('#media' + data.media[index].MediaID).addClass("disabled");
                 }
-                if (data.media[index].time < 5) {
+                learnTime = parseInt(data.media[index].time);
+                if (isNaN(learnTime)){
+                    learnTime = 0;
+                }
+                if (learnTime < 5) {
                     lastLearn = 0;
                 } else {
                     lastLearn = 1;

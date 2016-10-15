@@ -40,10 +40,10 @@ function loadMedia(mediaID) {
     }, function(data) {
         if(data.result === "succeeded") {
             $('main').load('lib/view.html', function() {
-                $("#media-title").html('<span id="media-id"></span>' + data.media[0].title);
-                $("#media-file").attr("src", "media/" + data.media[0].file);
-                $("#media-id").attr("media-id", data.media[0].MediaID);
-                learnTime = parseInt(data.media[0].time);
+                $("#media-title").html('<span id="media-id"></span>' + data.media.title);
+                $("#media-file").attr("src", "media/" + data.media.filename);
+                $("#media-id").attr("media-id", data.media.MediaID);
+                learnTime = parseInt(data.media.time);
                 if (isNaN(learnTime)) {
                     learnTime = 0;
                 }
@@ -59,7 +59,6 @@ function loadMedia(mediaID) {
                 $("#save").click(function() {
                     saveTime();
                 })
-                learnTime = data.media[0].time;
                 if (learnTime < 5) {
                     $("#next").addClass("disabled");
                 }
@@ -117,9 +116,9 @@ function loadCatalogue(type) {
                     learnTime = 0;
                 }
                 if (learnTime < 5) {
-                    lastLearn = 0;
+                    lastLearned = 0;
                 } else {
-                    lastLearn = 1;
+                    lastLearned = 1;
                 }
             }
         }

@@ -1,8 +1,12 @@
-(function($){
-  $(function(){
-
+$(document).ready(function(e) {
+    $('nav').load('lib/nav.html');
+    $('footer').load('lib/footer.html');
+    
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
+});
 
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+function loadMedia(mediaID) {
+    $('main').load('lib/view.html');
+    
+}

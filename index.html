@@ -14,6 +14,31 @@
 </head>
 
 <body style="display: flex; min-height: 100vh; flex-direction: column">
+    <!-- Modal Structure -->
+    <div id="login-fail" class="modal">
+        <div class="modal-content">
+            <h4>登录失败</h4>
+            <p>您还未注册。请点击注册按钮注册。</p>
+        </div>
+        <div class="modal-footer"> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">好</a> </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="signup-fail" class="modal">
+        <div class="modal-content">
+            <h4>注册失败</h4>
+            <p>该用户名已被别人注册。请选择其他的名字。</p>
+        </div>
+        <div class="modal-footer"> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">好</a> </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="signup-succeed" class="modal">
+        <div class="modal-content">
+            <h4>注册成功</h4>
+            <p>请点击登陆按钮登录。</p>
+        </div>
+        <div class="modal-footer"> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">好</a> </div>
+    </div>
+    
     <main style="flex: 1 0 auto">
         <div class="container">
             <div class="row">
@@ -30,8 +55,8 @@
                             </div>
                         </div>
                         <div class="card-action right-align">
-                              <a href="#">登录</a>
-                              <a href="#">注册</a>
+                              <a href="#" id="login">登录</a>
+                              <a href="#" id="signup">注册</a>
                             </div>
                     </div>
                 </div>
@@ -42,6 +67,7 @@
     
 <!--Import jQuery before materialize.js--> 
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script> 
+<script type="text/javascript" src="js/jquery.cookie-1.4.1.min.js"></script> 
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
 <script type="text/javascript" src="js/user.js"></script>

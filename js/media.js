@@ -3,7 +3,7 @@ var lastWordID;
 var lastExcelID;
 var lastPowerpointID;
 var lastPhotoshopID;
-var userID = getCookie('UserID');
+var userID = $.cookie('userID');
 var learnTime = 0;
 var learnTime_t;//用于调用setTimeout
 
@@ -40,9 +40,21 @@ function loadMedia(mediaID) {
     }, function(data) {
         if(data.result === "succeeded") {
             $('main').load('lib/view.html', function() {
-                $("#media-title").html(data.media[0].title);
+                $("#media-title").html('<span id="media-id"></span>' + data.media[0].title);
                 $("#media-file").attr("src", "media/" + data.media[0].file);
+                $("#media-id").attr("media-id", data.media[0].MediaID);
                 $("#learn-time").html("您已学习" + data.media[0].time + "分钟");
+                $("#last").click(function () {
+                    saveTime();
+                    loadMedia(parseInt($("#media-id").attr("media-id"))-1);
+                })
+                $("#next").click(function () {
+                    saveTime();
+                    loadMedia(parseInt($("#media-id").attr("media-id"))+1);
+                })
+                $("#save").click(function() {
+                    saveTime();
+                })
                 learnTime = data.media[0].time;
                 if (learnTime < 5) {
                     $("#next").addClass("disabled");
@@ -50,6 +62,25 @@ function loadMedia(mediaID) {
                 learnTime_t = setTimeout("timeCount()", 60000);
             });
         }
+    });
+}
+
+function saveTime() {
+    $.ajax({
+        url: "API/getTime.php",
+        type: "POST",
+        data: {
+            "UserID": $.cookie("userID"),
+            "MediaID": $("#media-id").attr("media-id"),
+            "time": learnTime
+        },
+        success: function (data) {
+            if (data.result == "succeeded") {
+            } else {
+                alert("保存进度失败");
+            }
+        },
+        dataType: "json"
     });
 }
 

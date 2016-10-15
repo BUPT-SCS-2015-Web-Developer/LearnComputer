@@ -43,7 +43,11 @@ function loadMedia(mediaID) {
                 $("#media-title").html('<span id="media-id"></span>' + data.media[0].title);
                 $("#media-file").attr("src", "media/" + data.media[0].file);
                 $("#media-id").attr("media-id", data.media[0].MediaID);
-                $("#learn-time").html("您已学习" + data.media[0].time + "分钟");
+                learnTime = parseInt(data.media[0].time);
+                if (isNaN(learnTime)) {
+                    learnTime = 0;
+                }
+                $("#learn-time").html("您已学习" + learnTime + "分钟");
                 $("#last").click(function () {
                     saveTime();
                     loadMedia(parseInt($("#media-id").attr("media-id"))-1);

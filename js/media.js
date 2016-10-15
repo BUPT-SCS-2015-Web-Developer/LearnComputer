@@ -105,9 +105,9 @@ function loadCatalogue(type) {
         if (data.result === "succeeded") {
             var lastLearned = 1;
             for (index in data.media) {
-                $("#catalogue").append('<div class="col m4"><a class="btn-flat" id="media' + data.media[index].MediaID + '">' + data.media[index].title + ' <span class="chip">' + data.media[index].time + '</span></a></div>');
+                $("#catalogue").append('<div class="col m4"><a class="btn-flat" id="media' + data.media[index].MediaID + '" media-id="' + data.media[index].MediaID + '">' + data.media[index].title + ' <span class="chip">' + data.media[index].time + '</span></a></div>');
                 $('#media' + data.media[index].MediaID).click(function() {
-                    loadMedia($(this).attr("id").match("\d+"));
+                    loadMedia($(this).attr("media-id"));
                 });
                 if (lastLearned == 0) {
                     $('#media' + data.media[index].MediaID).addClass("disabled");
